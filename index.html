@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moneda Educativa | Plataforma escolar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-stone-100 text-slate-800">
+  <header class="bg-slate-950 text-white">
+    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-4">
+      <div class="flex items-center gap-3">
+        <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-teal-400 text-xl font-black text-slate-950">M</div>
+        <div><p class="text-lg font-bold tracking-tight">Moneda Educativa</p><p class="text-xs text-slate-300">Aprender, participar y ganar</p></div>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="mr-2 text-sm text-slate-300">Vista de demostración</span>
+        <button id="studentTab" onclick="showPanel('student')" class="rounded-full bg-teal-300 px-4 py-2 text-sm font-bold text-slate-950">Estudiante</button>
+        <button id="teacherTab" onclick="showPanel('teacher')" class="rounded-full border border-slate-600 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800">Profesor</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto grid max-w-7xl gap-6 px-4 py-6 lg:grid-cols-[220px_minmax(0,1fr)] lg:px-6">
+    <aside class="hidden rounded-3xl bg-white p-4 shadow-sm lg:block">
+      <p class="px-3 pb-3 pt-2 text-xs font-bold uppercase tracking-widest text-slate-400">Navegación</p>
+      <nav class="space-y-1 text-sm">
+        <a href="#inicio" class="block rounded-xl bg-teal-50 px-3 py-3 font-bold text-teal-800">▦ &nbsp; Resumen</a>
+        <a href="#recompensas" class="block rounded-xl px-3 py-3 text-slate-600 hover:bg-stone-100">✦ &nbsp; Recompensas</a>
+        <a href="#historial" class="block rounded-xl px-3 py-3 text-slate-600 hover:bg-stone-100">↻ &nbsp; Historial</a>
+        <a href="#nfc" class="block rounded-xl px-3 py-3 text-slate-600 hover:bg-stone-100">▣ &nbsp; Tarjeta NFC</a>
+        <a href="#prestamos" class="block rounded-xl px-3 py-3 text-slate-600 hover:bg-stone-100">▤ &nbsp; Préstamos</a>
+      </nav>
+      <div class="mt-8 rounded-2xl bg-slate-950 p-4 text-white">
+        <p class="text-sm font-bold">¡Sigue participando!</p>
+        <p class="mt-2 text-xs leading-5 text-slate-300">Las actividades escolares te ayudan a acumular monedas.</p>
+        <div class="mt-4 h-1.5 rounded-full bg-slate-700"><div class="h-1.5 w-2/3 rounded-full bg-teal-300"></div></div>
+      </div>
+      <p class="mt-6 text-center text-xs text-slate-400">Prototipo SENA</p>
+    </aside>
+
+    <div class="min-w-0">
+      <section id="studentPanel">
+        <div id="inicio" class="mb-6 overflow-hidden rounded-3xl bg-gradient-to-r from-teal-800 via-teal-700 to-emerald-600 p-6 text-white shadow-sm md:p-8">
+          <p class="text-sm font-semibold uppercase tracking-widest text-teal-100">Tu espacio escolar</p>
+          <div class="mt-3 flex flex-wrap items-end justify-between gap-4">
+            <div><h1 class="text-3xl font-black tracking-tight md:text-4xl">¡Hola, estudiante!</h1><p class="mt-2 max-w-xl text-sm text-teal-50 md:text-base">Tus buenas acciones se convierten en nuevas oportunidades.</p></div>
+            <div class="hidden text-6xl md:block">✦</div>
+          </div>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          <article class="rounded-3xl bg-white p-5 shadow-sm">
+            <div class="flex items-center justify-between"><p class="text-sm font-semibold text-slate-500">Saldo disponible</p><span class="rounded-xl bg-amber-100 px-3 py-2 text-xl">◉</span></div>
+            <p class="mt-4 text-4xl font-black text-slate-950"><span id="studentBalance">150</span><span class="ml-2 text-base font-semibold text-slate-500">monedas</span></p>
+            <a href="#historial" class="mt-5 inline-flex text-sm font-bold text-teal-700 hover:text-teal-900">Revisar movimientos →</a>
+          </article>
+          <article class="rounded-3xl bg-white p-5 shadow-sm">
+            <div class="flex items-center justify-between"><p class="text-sm font-semibold text-slate-500">Préstamos activos</p><span class="rounded-xl bg-sky-100 px-3 py-2 text-xl">▤</span></div>
+            <p class="mt-4 text-4xl font-black text-slate-950">1</p>
+            <a href="#prestamos" class="mt-5 inline-flex text-sm font-bold text-teal-700 hover:text-teal-900">Consultar artículos →</a>
+          </article>
+          <article id="nfc" class="rounded-3xl bg-white p-5 shadow-sm sm:col-span-2 xl:col-span-1">
+            <div class="flex items-center justify-between"><p class="text-sm font-semibold text-slate-500">Tarjeta NFC</p><span class="rounded-xl bg-violet-100 px-3 py-2 text-xl">▣</span></div>
+            <div class="mt-4 flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span><span class="font-bold text-emerald-700">Activa</span></div>
+            <p class="mt-1 text-xs text-slate-500">ID de ejemplo: NFC-001234</p>
+            <p class="mt-4 text-xs text-slate-500">El lector físico se integrará en una etapa posterior.</p>
+          </article>
+        </div>
+
+        <div class="mt-6 grid gap-6 xl:grid-cols-[1.5fr_1fr]">
+          <section id="recompensas" class="rounded-3xl bg-white p-5 shadow-sm md:p-6">
+            <div class="flex flex-wrap items-center justify-between gap-3"><div><p class="text-xs font-bold uppercase tracking-widest text-teal-700">Usa tus monedas</p><h2 class="mt-1 text-xl font-black">Recompensas disponibles</h2></div><span class="rounded-full bg-stone-100 px-3 py-1 text-xs font-semibold text-slate-500">Valores de ejemplo</span></div>
+            <div class="mt-5 grid gap-3 sm:grid-cols-2">
+              <article class="rounded-2xl border border-stone-200 p-4"><div class="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-100 text-2xl">✎</div><h3 class="mt-3 font-bold">Cuaderno</h3><p class="mt-1 text-sm text-slate-500">Útil para tus clases</p><div class="mt-4 flex items-center justify-between gap-2"><span class="text-sm font-bold text-teal-800">50 monedas</span><button onclick="redeem('Cuaderno',50)" class="rounded-lg bg-teal-700 px-3 py-2 text-sm font-bold text-white hover:bg-teal-800">Canjear</button></div></article>
+              <article class="rounded-2xl border border-stone-200 p-4"><div class="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-100 text-2xl">✏</div><h3 class="mt-3 font-bold">Lápiz</h3><p class="mt-1 text-sm text-slate-500">Material escolar</p><div class="mt-4 flex items-center justify-between gap-2"><span class="text-sm font-bold text-teal-800">30 monedas</span><button onclick="redeem('Lápiz',30)" class="rounded-lg bg-teal-700 px-3 py-2 text-sm font-bold text-white hover:bg-teal-800">Canjear</button></div></article>
+              <article class="rounded-2xl border border-stone-200 p-4"><div class="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-100 text-2xl">♜</div><h3 class="mt-3 font-bold">Juego de mesa</h3><p class="mt-1 text-sm text-slate-500">Tiempo de recreación</p><div class="mt-4 flex items-center justify-between gap-2"><span class="text-sm font-bold text-teal-800">40 monedas</span><button onclick="redeem('Juego de mesa',40)" class="rounded-lg bg-teal-700 px-3 py-2 text-sm font-bold text-white hover:bg-teal-800">Canjear</button></div></article>
+              <article class="rounded-2xl border border-stone-200 p-4"><div class="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-100 text-2xl">⚽</div><h3 class="mt-3 font-bold">Préstamo de balón</h3><p class="mt-1 text-sm text-slate-500">Actividad deportiva</p><div class="mt-4 flex items-center justify-between gap-2"><span class="text-sm font-bold text-teal-800">50 monedas</span><button onclick="redeem('Préstamo de balón',50)" class="rounded-lg bg-teal-700 px-3 py-2 text-sm font-bold text-white hover:bg-teal-800">Canjear</button></div></article>
+            </div>
+            <p id="redeemMessage" aria-live="polite" class="mt-4 text-sm"></p>
+          </section>
+
+          <section class="rounded-3xl bg-emerald-50 p-5 shadow-sm md:p-6">
+            <p class="text-xs font-bold uppercase tracking-widest text-emerald-800">Acceso rápido</p><h2 class="mt-1 text-xl font-black text-slate-900">¿Qué quieres consultar?</h2>
+            <div class="mt-5 space-y-3">
+              <a href="#recompensas" class="flex items-center justify-between rounded-2xl bg-white p-4 font-semibold shadow-sm hover:bg-emerald-100"><span>✦ &nbsp; Ver recompensas</span><span>→</span></a>
+              <a href="#historial" class="flex items-center justify-between rounded-2xl bg-white p-4 font-semibold shadow-sm hover:bg-emerald-100"><span>↻ &nbsp; Historial de monedas</span><span>→</span></a>
+              <a href="#nfc" class="flex items-center justify-between rounded-2xl bg-white p-4 font-semibold shadow-sm hover:bg-emerald-100"><span>▣ &nbsp; Mi tarjeta NFC</span><span>→</span></a>
+              <a href="#prestamos" class="flex items-center justify-between rounded-2xl bg-white p-4 font-semibold shadow-sm hover:bg-emerald-100"><span>▤ &nbsp; Mis préstamos</span><span>→</span></a>
+            </div>
+          </section>
+        </div>
+
+        <div class="mt-6 grid gap-6 xl:grid-cols-[1.5fr_1fr]">
+          <section id="historial" class="rounded-3xl bg-white p-5 shadow-sm md:p-6">
+            <div class="flex items-center justify-between gap-3"><div><p class="text-xs font-bold uppercase tracking-widest text-slate-400">Actividad de la cuenta</p><h2 class="mt-1 text-xl font-black">Últimos movimientos</h2></div><span class="rounded-full bg-stone-100 px-3 py-1 text-xs text-slate-500">Ejemplo</span></div>
+            <div id="studentHistory" class="mt-4 divide-y divide-stone-100">
+              <div class="flex items-center justify-between gap-3 py-4"><div><p class="font-bold">Reto de lectura</p><p class="mt-1 text-xs text-slate-500">14 de octubre · Actividad escolar</p></div><span class="font-black text-emerald-700">+20</span></div>
+              <div class="flex items-center justify-between gap-3 py-4"><div><p class="font-bold">Actividad de matemáticas</p><p class="mt-1 text-xs text-slate-500">12 de octubre · Clase</p></div><span class="font-black text-emerald-700">+10</span></div>
+              <div class="flex items-center justify-between gap-3 py-4"><div><p class="font-bold">Juego de mesa</p><p class="mt-1 text-xs text-slate-500">10 de octubre · Canje</p></div><span class="font-black text-rose-600">−30</span></div>
+            </div>
+          </section>
+          <section id="prestamos" class="rounded-3xl bg-white p-5 shadow-sm md:p-6">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-400">Artículos escolares</p><h2 class="mt-1 text-xl font-black">Mis préstamos</h2>
+            <div class="mt-4 space-y-3">
+              <div class="rounded-2xl border border-stone-200 p-4"><div class="flex items-center justify-between gap-2"><p class="font-bold">Balón de fútbol</p><span class="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-bold text-amber-800">Prestado</span></div><p class="mt-2 text-xs text-slate-500">Fecha límite: 25 de octubre</p></div>
+              <div class="rounded-2xl border border-stone-200 p-4"><div class="flex items-center justify-between gap-2"><p class="font-bold">Juego de mesa</p><span class="rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-bold text-emerald-800">Devuelto</span></div><p class="mt-2 text-xs text-slate-500">Devuelto el 18 de octubre</p></div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section id="teacherPanel" class="hidden">
+        <div class="mb-6 rounded-3xl bg-slate-950 p-6 text-white md:p-8"><p class="text-xs font-bold uppercase tracking-widest text-teal-300">Herramientas del equipo docente</p><h1 class="mt-2 text-3xl font-black">Panel del profesor</h1><p class="mt-2 max-w-2xl text-sm text-slate-300">Consulta el saldo y registra monedas por actividades escolares, indicando siempre el motivo.</p></div>
+        <section class="rounded-3xl bg-white p-5 shadow-sm md:p-6">
+          <label for="studentSearch" class="text-sm font-bold">Buscar estudiante</label>
+          <div class="mt-2 flex flex-col gap-3 sm:flex-row"><input id="studentSearch" class="min-w-0 flex-1 rounded-xl border border-stone-300 px-4 py-3 outline-none focus:border-teal-600 focus:ring-2 focus:ring-teal-100" placeholder="Ej. Ana Gómez"><button onclick="searchStudent()" class="rounded-xl bg-slate-950 px-5 py-3 font-bold text-white hover:bg-slate-800">Buscar estudiante</button></div>
+          <p id="searchMessage" class="mt-2 text-sm text-slate-500">Registro de ejemplo disponible: Ana Gómez.</p>
+        </section>
+        <section class="mt-5 rounded-3xl border border-teal-100 bg-teal-50 p-5 md:p-6">
+          <div class="flex flex-wrap items-center justify-between gap-4"><div><p class="text-xs font-bold uppercase tracking-widest text-teal-800">Estudiante seleccionado</p><h2 class="mt-1 text-2xl font-black">Ana Gómez</h2><p class="mt-1 text-sm text-slate-600">Curso 5.º A · Código EST-001</p></div><div class="rounded-2xl bg-white px-5 py-4"><p class="text-xs font-bold text-slate-500">Saldo actual</p><p class="mt-1 text-3xl font-black text-teal-800"><span id="teacherBalance">150</span> <span class="text-sm">monedas</span></p></div></div>
+        </section>
+        <div class="mt-5 grid gap-6 xl:grid-cols-2">
+          <section class="rounded-3xl bg-white p-5 shadow-sm md:p-6">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-400">Registro de cuenta</p><h2 class="mt-1 text-xl font-black">Nuevo movimiento</h2><p class="mt-2 text-sm text-slate-500">Las deducciones necesitan una justificación.</p>
+            <form id="movementForm" class="mt-5 space-y-4">
+              <div><label for="movementType" class="mb-1 block text-sm font-bold">Operación</label><select id="movementType" class="w-full rounded-xl border border-stone-300 bg-white px-4 py-3"><option value="add">Asignar monedas</option><option value="subtract">Descontar monedas</option></select></div>
+              <div><label for="amount" class="mb-1 block text-sm font-bold">Cantidad</label><input id="amount" type="number" min="1" step="1" required class="w-full rounded-xl border border-stone-300 px-4 py-3" placeholder="Cantidad entera"></div>
+              <div><label for="reason" class="mb-1 block text-sm font-bold">Motivo del movimiento</label><input id="reason" required class="w-full rounded-xl border border-stone-300 px-4 py-3" placeholder="Ej. Participación en clase"></div>
+              <button class="w-full rounded-xl bg-teal-700 px-4 py-3 font-bold text-white hover:bg-teal-800">Validar y registrar (demo)</button>
+              <p id="movementMessage" aria-live="polite" class="text-sm"></p>
+            </form>
+          </section>
+          <section class="rounded-3xl bg-white p-5 shadow-sm md:p-6">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-400">Seguimiento</p><h2 class="mt-1 text-xl font-black">Historial reciente</h2>
+            <div id="teacherHistory" class="mt-4 divide-y divide-stone-100">
+              <div class="flex items-center justify-between gap-3 py-4"><div><p class="font-bold">Reto de lectura</p><p class="mt-1 text-xs text-slate-500">Ana Gómez · Ejemplo</p></div><span class="font-black text-emerald-700">+20</span></div>
+              <div class="flex items-center justify-between gap-3 py-4"><div><p class="font-bold">Actividad de matemáticas</p><p class="mt-1 text-xs text-slate-500">Ana Gómez · Ejemplo</p></div><span class="font-black text-emerald-700">+10</span></div>
+            </div>
+          </section>
+        </div>
+        <section class="mt-6 rounded-3xl bg-white p-5 shadow-sm md:p-6"><p class="text-xs font-bold uppercase tracking-widest text-slate-400">Control de artículos</p><h2 class="mt-1 text-xl font-black">Préstamos registrados</h2><div class="mt-4 overflow-x-auto"><table class="w-full min-w-[520px] text-left text-sm"><thead><tr class="border-b border-stone-200 text-slate-500"><th class="pb-3 pr-4">Artículo</th><th class="pb-3 pr-4">Estudiante</th><th class="pb-3 pr-4">Estado</th><th class="pb-3">Fecha límite</th></tr></thead><tbody><tr class="border-b border-stone-100"><td class="py-4 pr-4 font-semibold">Balón de fútbol</td><td class="py-4 pr-4">Ana Gómez</td><td class="py-4 pr-4"><span class="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800">Prestado</span></td><td class="py-4">25 de octubre</td></tr><tr><td class="py-4 pr-4 font-semibold">Juego de mesa</td><td class="py-4 pr-4">Luis Pérez</td><td class="py-4 pr-4"><span class="rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-800">Devuelto</span></td><td class="py-4">18 de octubre</td></tr></tbody></table></div></section>
+      </section>
+      <footer class="mt-8 flex flex-wrap items-center justify-between gap-2 border-t border-stone-200 py-5 text-xs text-slate-500"><span>Moneda Educativa · Prototipo académico</span><span>HTML + Tailwind CSS</span></footer>
+    </div>
+  </main>
+
+<script>
+let balance = 150;
+function showPanel(panel) {
+  const student = document.getElementById('studentPanel');
+  const teacher = document.getElementById('teacherPanel');
+  const studentTab = document.getElementById('studentTab');
+  const teacherTab = document.getElementById('teacherTab');
+  const active = 'rounded-full bg-teal-300 px-4 py-2 text-sm font-bold text-slate-950';
+  const inactive = 'rounded-full border border-slate-600 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800';
+  if (panel === 'student') {
+    student.classList.remove('hidden'); teacher.classList.add('hidden');
+    studentTab.className = active; teacherTab.className = inactive;
+  } else {
+    teacher.classList.remove('hidden'); student.classList.add('hidden');
+    studentTab.className = inactive; teacherTab.className = active;
+  }
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+function updateBalances() {
+  document.getElementById('studentBalance').textContent = balance;
+  document.getElementById('teacherBalance').textContent = balance;
+}
+function addHistoryRow(containerId, titleText, amount, subtitleText) {
+  const row = document.createElement('div'); row.className = 'flex items-center justify-between gap-3 py-4';
+  const details = document.createElement('div');
+  const title = document.createElement('p'); title.className = 'font-bold'; title.textContent = titleText;
+  const subtitle = document.createElement('p'); subtitle.className = 'mt-1 text-xs text-slate-500'; subtitle.textContent = subtitleText;
+  details.append(title, subtitle);
+  const label = document.createElement('span');
+  label.className = 'font-black ' + (amount >= 0 ? 'text-emerald-700' : 'text-rose-600');
+  label.textContent = (amount >= 0 ? '+' : '−') + Math.abs(amount);
+  row.append(details, label);
+  document.getElementById(containerId).prepend(row);
+}
+function searchStudent() {
+  const value = document.getElementById('studentSearch').value.trim();
+  const message = document.getElementById('searchMessage');
+  if (!value || /ana/i.test(value)) message.textContent = 'Estudiante encontrado: Ana Gómez (datos de demostración).';
+  else message.textContent = 'Este prototipo solo tiene el registro de Ana Gómez. La búsqueda real se conectará al backend.';
+}
+function redeem(item, cost) {
+  const message = document.getElementById('redeemMessage');
+  if (balance < cost) {
+    message.className = 'mt-4 text-sm font-semibold text-rose-700';
+    message.textContent = 'No tienes suficientes monedas para canjear ' + item + '.';
+    return;
+  }
+  balance -= cost; updateBalances();
+  addHistoryRow('studentHistory', 'Canje: ' + item, -cost, 'Justo ahora · Demostración');
+  message.className = 'mt-4 text-sm font-semibold text-emerald-700';
+  message.textContent = 'Canje de demostración realizado: ' + item + '. El saldo se actualizó, pero no se guarda al recargar la página.';
+}
+document.getElementById('movementForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  const type = document.getElementById('movementType').value;
+  const amount = Number(document.getElementById('amount').value);
+  const reason = document.getElementById('reason').value.trim();
+  const message = document.getElementById('movementMessage');
+  if (!Number.isInteger(amount) || amount <= 0 || !reason) {
+    message.className = 'text-sm font-semibold text-rose-700';
+    message.textContent = 'Escribe una cantidad entera positiva y un motivo.';
+    return;
+  }
+  if (type === 'subtract' && amount > balance) {
+    message.className = 'text-sm font-semibold text-rose-700';
+    message.textContent = 'No se pueden descontar más monedas de las disponibles.';
+    return;
+  }
+  const delta = type === 'add' ? amount : -amount;
+  balance += delta; updateBalances();
+  addHistoryRow('teacherHistory', reason, delta, 'Ana Gómez · Justo ahora · Demostración');
+  addHistoryRow('studentHistory', reason, delta, 'Movimiento registrado en la demostración');
+  message.className = 'text-sm font-semibold text-emerald-700';
+  message.textContent = 'Movimiento aplicado en la demostración. No se guardará al cerrar o recargar la página.';
+  this.reset();
+});
+</script>
+</body>
+</html>
